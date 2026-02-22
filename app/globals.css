@@ -24,3 +24,52 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.reveal-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(8px);
+  animation: rt-fade var(--rt-duration, 0.8s) ease forwards;
+  animation-delay: var(--rt-delay, 0s);
+  will-change: transform, opacity;
+}
+
+
+.reveal-text::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #050B10; 
+  transform: translateX(0%);
+  animation: rt-mask var(--rt-duration, 0.8s) ease forwards;
+  animation-delay: var(--rt-delay, 0s);
+  will-change: transform;
+}
+
+@keyframes rt-mask {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes rt-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-text,
+  .reveal-text::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reveal-text::after {
+    display: none !important;
+  }
+}

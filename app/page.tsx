@@ -5,6 +5,8 @@ import Features from "@/app/components/landing/Features";
 import WaitlistForm from "@/app/components/landing/WaitListForm";
 import Footer from "@/app/components/layout/Footer";
 
+
+// Main default landing page
 export default function Page() {
   return (
     <div id="top" className="min-h-screen bg-ink-950 text-white overflow-x-hidden">
