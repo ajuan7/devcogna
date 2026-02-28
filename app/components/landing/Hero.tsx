@@ -36,7 +36,7 @@ export default function Hero() {
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href="#waitlist">Get Early Access</Button>
-            <Button href="#how" variant="secondary">Learn More</Button>
+            <Button href="/about" variant="secondary">Learn More</Button>
           </div>
 
           <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-sm text-white/50">
