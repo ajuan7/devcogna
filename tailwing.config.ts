@@ -3,6 +3,9 @@ const config = {
   theme: {
     extend: {
       colors: {
+        background: "#0A1124",
+        surface: "#0F1B3D",
+        primary: "#3B82F6",
         ink: {
           950: "#050B10",
           900: "#07121A",
