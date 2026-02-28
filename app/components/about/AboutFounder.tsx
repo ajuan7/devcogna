@@ -20,9 +20,6 @@ export default function AboutFounder() {
           <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
             Built by an engineer, designed like a system
           </h2>
-          <p className="mt-4 text-white/60">
-            Founder visibility without turning the product into a personal brand page.
-          </p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
