@@ -44,6 +44,7 @@ export default function RootLayout({
   };
 
   return (
+    <ClerkProvider>
       <html lang="en-AU">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {children}
@@ -56,5 +57,6 @@ export default function RootLayout({
           />
         </body>
       </html>
+    </ClerkProvider>
   );
 }
