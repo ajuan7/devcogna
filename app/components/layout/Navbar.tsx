@@ -12,6 +12,7 @@ import {
   SignInButton,
   SignUpButton,
   UserButton,
+  useUser,
 } from "@clerk/nextjs";
 
 type NavItem = { label: string; href: string };
@@ -19,14 +20,22 @@ type NavItem = { label: string; href: string };
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { isSignedIn } = useUser();
 
   const items: NavItem[] = useMemo(
-    () => [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
-      { label: "Waitlist", href: "/#waitlist" },
-    ],
-    []
+    () =>
+      isSignedIn
+        ? [
+            { label: "Home", href: "/" },
+            { label: "Dashboard", href: "/dashboard" },
+            { label: "Practice", href: "/practice" },
+          ]
+        : [
+            { label: "Home", href: "/" },
+            { label: "About", href: "/about" },
+            { label: "Waitlist", href: "/#waitlist" },
+          ],
+    [isSignedIn]
   );
 
   useEffect(() => {
