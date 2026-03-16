@@ -1,13 +1,19 @@
 import Container from "@/app/components/layout/Container";
 import FeatureCard from "./FeatureCard";
 
-export default function Features() {
-  const items = [
-    "Short, high-frequency recognition drills",
-    "Pattern-specific accuracy & speed tracking",
-    "Flashcards generated from your mistakes",
-  ];
+const live = [
+  "Timed pattern recognition drills",
+  "Accuracy & response time tracking",
+  "Dashboard with pattern performance breakdown",
+];
 
+const coming = [
+  "Flashcard review from your mistakes",
+  "AI-generated pattern explanations",
+  "Adaptive difficulty & spaced repetition",
+];
+
+export default function Features() {
   return (
     <section id="features" className="py-28">
       <Container>
@@ -18,8 +24,26 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {items.map((t) => <FeatureCard key={t} text={t} />)}
+        <div className="mt-16 grid gap-12 md:grid-cols-2">
+          <div>
+            <div className="mb-5 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-aura-400" />
+              <span className="text-xs font-medium uppercase tracking-widest text-aura-300">Available now</span>
+            </div>
+            <div className="space-y-4">
+              {live.map((t) => <FeatureCard key={t} text={t} />)}
+            </div>
+          </div>
+
+          <div>
+            <div className="mb-5 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+              <span className="text-xs font-medium uppercase tracking-widest text-white/35">Coming in the full version</span>
+            </div>
+            <div className="space-y-4">
+              {coming.map((t) => <FeatureCard key={t} text={t} muted />)}
+            </div>
+          </div>
         </div>
       </Container>
     </section>

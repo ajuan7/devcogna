@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model User {
+  id           String   @id @default(cuid())
+  clerkUserId  String   @unique
+  email        String?  @db.VarChar(255)
+  createdAt    DateTime @default(now())
+
+  attempts     Attempt[]
+  flashcards   Flashcard[]
+  sessions     Session[]
+}
+
+model Pattern {
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(100)
+  slug      String   @unique @db.VarChar(120)
+  createdAt DateTime @default(now())
+
+  questions         Question[]
+  flashcards        Flashcard[]
+  attemptsSelected  Attempt[] @relation("SelectedPattern")
+  attemptsCorrect   Attempt[] @relation("CorrectPattern")
+
+  @@index([slug])
+}
+
+model Question {
+  id         String     @id @default(cuid())
+  prompt     String
+  difficulty Difficulty @default(MEDIUM)
+  tags       String[]   @default([])
+
+  patternId  String
+  pattern    Pattern    @relation(fields: [patternId], references: [id], onDelete: Restrict)
+
+  createdAt  DateTime   @default(now())
+
+  attempts   Attempt[]
+
+  @@index([patternId])
+  @@index([difficulty])
+}
+
+model Attempt {
+  id                String   @id @default(cuid())
+
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  questionId        String
+  question          Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  patternSelectedId String
+  patternSelected   Pattern  @relation("SelectedPattern", fields: [patternSelectedId], references: [id], onDelete: Restrict)
+
+  correctPatternId  String
+  correctPattern    Pattern  @relation("CorrectPattern", fields: [correctPatternId], references: [id], onDelete: Restrict)
+
+  isCorrect         Boolean
+  responseTimeMs    Int
+
+  createdAt         DateTime @default(now())
+
+  flashcardsCreated Flashcard[] @relation("AttemptToFlashcards")
+
+  @@index([userId, createdAt])
+  @@index([userId, correctPatternId, createdAt])
+  @@index([userId, isCorrect, createdAt])
+  @@index([questionId])
+}
+
+model Flashcard {
+  id            String   @id @default(cuid())
+
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  patternId     String
+  pattern       Pattern  @relation(fields: [patternId], references: [id], onDelete: Restrict)
+
+  front         String
+  back          String
+
+  sourceAttemptId String?
+  sourceAttempt   Attempt? @relation("AttemptToFlashcards", fields: [sourceAttemptId], references: [id], onDelete: SetNull)
+
+  createdAt     DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([userId, patternId, createdAt])
+}
+
+model Session {
+  id          String   @id @default(cuid())
+
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  startedAt   DateTime @default(now())
+  endedAt     DateTime?
+  attemptCount Int     @default(0)
+
+  @@index([userId, startedAt])
+}

@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="mx-auto max-w-3xl">
           <div className="mb-10 inline-flex items-center gap-3 rounded-full border border-aura-400/30 bg-ink-900/70 px-6 py-2.5 text-xs font-medium tracking-wide text-aura-300">
             <span className="h-2 w-2 rounded-full bg-aura-400 shadow-[0_0_12px_rgba(43,182,255,0.8)]" />
-            <span className="uppercase">Pattern Recognition Training for Technical Interviews</span>
+            <span className="uppercase">Early Access · Now Live</span>
           </div>
 
           <h1 className="text-5xl font-semibold leading-tight tracking-tight sm:text-6xl">
@@ -35,8 +35,8 @@ export default function Hero() {
           </p>
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="#waitlist">Get Early Access</Button>
-            <Button href="/about" variant="secondary">Learn More</Button>
+            <Button href="/sign-up">Start Drilling Free</Button>
+            <Button href="/about" variant="secondary">See What's Coming</Button>
           </div>
 
           <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-sm text-white/50">

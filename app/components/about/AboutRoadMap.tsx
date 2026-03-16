@@ -5,16 +5,25 @@ function Card({
   version,
   title,
   points,
+  live = false,
 }: {
   version: string;
   title: string;
   points: string[];
+  live?: boolean;
 }) {
   return (
-    <div className="rounded-3xl border border-white/5 bg-ink-900/60 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
+    <div className={`rounded-3xl border p-7 shadow-[0_18px_60px_rgba(0,0,0,0.35)] ${live ? "border-aura-400/20 bg-ink-900/80" : "border-white/5 bg-ink-900/60"}`}>
       <div className="flex items-center justify-between">
         <div className="text-sm font-semibold text-aura-300">{version}</div>
-        <div className="text-xs text-white/45">Planned</div>
+        {live ? (
+          <div className="flex items-center gap-1.5 rounded-full border border-aura-400/25 bg-aura-400/10 px-2.5 py-1 text-xs font-medium text-aura-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-aura-400" />
+            Early Access
+          </div>
+        ) : (
+          <div className="text-xs text-white/35">Planned</div>
+        )}
       </div>
 
       <div className="mt-3 text-lg font-semibold tracking-tight">{title}</div>
@@ -22,7 +31,7 @@ function Card({
       <ul className="mt-4 space-y-2 text-sm text-white/60">
         {points.map((p) => (
           <li key={p} className="flex items-start gap-2">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 text-aura-400" />
+            <CheckCircle2 className={`mt-0.5 h-4 w-4 ${live ? "text-aura-400" : "text-white/20"}`} />
             <span>{p}</span>
           </li>
         ))}
@@ -56,6 +65,7 @@ export default function AboutRoadmap() {
               "Response time instrumentation (ms)",
               "Baseline analytics (accuracy + speed)",
             ]}
+            live
           />
           <Card
             version="v0.2"

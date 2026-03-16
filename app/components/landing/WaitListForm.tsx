@@ -40,9 +40,12 @@ export default function WaitlistForm() {
     <section id="waitlist" className="border-t border-white/5 py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <h3 className="text-3xl font-semibold">Join the waitlist</h3>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-ink-900/70 px-4 py-2 text-xs font-medium tracking-wide text-white/50">
+            <span className="uppercase">Full Version</span>
+          </div>
+          <h3 className="text-3xl font-semibold">Be first when v1.0 ships</h3>
           <p className="mt-4 text-white/60">
-            Early users get discounted Pro access and Sprint Mode.
+            Early access is live now. The full version — AI explanations, flashcard review, and billing — is in development. Leave your email and we'll reach out first.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-10">
@@ -62,7 +65,7 @@ export default function WaitlistForm() {
                 disabled={loading}
                 className="h-14 rounded-2xl bg-aura-500 px-8 font-semibold text-ink-950 hover:bg-aura-400 disabled:opacity-60"
               >
-                {loading ? "Submitting..." : "Join Waitlist"}
+                {loading ? "Submitting..." : "Notify Me"}
               </button>
             </div>
 
