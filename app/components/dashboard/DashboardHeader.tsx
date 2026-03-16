@@ -11,7 +11,7 @@ export default function DashboardHeader() {
         </div>
         <a
           href="/practice"
-          className="inline-flex items-center gap-2 rounded-2xl bg-aura-500 px-5 py-2.5 text-sm font-semibold text-ink-950 hover:bg-aura-400 transition self-start sm:self-auto"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-aura-500 px-5 py-4 text-sm font-semibold text-ink-950 shadow-[0_0_24px_rgba(43,182,255,0.3)] hover:bg-aura-400 hover:shadow-[0_0_32px_rgba(43,182,255,0.45)] transition sm:w-auto sm:py-2.5"
         >
           <Zap className="h-4 w-4" />
           Start Drill
